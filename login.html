@@ -6,217 +6,124 @@
   <title>ເຂົ້າລະບົບ — ເຂື່ອນໄຟຟ້ານ້ຳຊໍ້</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg: #0d1117;
-      --bg2: #161b22;
-      --bg3: #1c2128;
-      --border: #30363d;
-      --txt: #e6edf3;
-      --txt2: #8b949e;
-      --txt3: #484f58;
-      --green: #3fb950;
-      --red: #f85149;
-      --blue: #58a6ff;
-      --r: 6px;
-      --font: 'IBM Plex Sans Thai', sans-serif;
-      --mono: 'IBM Plex Mono', monospace;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;
+      --border:#30363d;--txt:#e6edf3;--txt2:#8b949e;--txt3:#484f58;
+      --green:#3fb950;--red:#f85149;--blue:#58a6ff;--accent:#238636;
+      --r:6px;--font:'IBM Plex Sans Thai',sans-serif;--mono:'IBM Plex Mono',monospace;
     }
-    
-    body {
-      background-color: var(--bg);
-      color: var(--txt);
-      font-family: var(--font);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .login-container {
-      background-color: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 40px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-
-    .brand {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .brand h2 {
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--txt);
-      margin-bottom: 8px;
-    }
-
-    .brand p {
-      color: var(--txt2);
-      font-size: 14px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      color: var(--txt);
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .form-group input {
-      width: 100%;
-      background-color: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 12px 16px;
-      color: var(--txt);
-      font-family: var(--font);
-      font-size: 15px;
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--blue);
-    }
-
-    .btn-login {
-      width: 100%;
-      background-color: var(--green);
-      color: white;
-      border: none;
-      border-radius: var(--r);
-      padding: 12px;
-      font-family: var(--font);
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s;
-      margin-top: 10px;
-    }
-
-    .btn-login:hover {
-      opacity: 0.9;
-    }
-
-    .btn-login:disabled {
-      background-color: var(--txt3);
-      cursor: not-allowed;
-    }
-
-    .error-message {
-      background-color: rgba(248,81,73,0.1);
-      border: 1px solid var(--red);
-      color: var(--red);
-      padding: 12px;
-      border-radius: var(--r);
-      font-size: 14px;
-      margin-bottom: 20px;
-      display: none;
-    }
-
-    .error-message.show {
-      display: block;
-    }
+    body{background:var(--bg);color:var(--txt);font-family:var(--font);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;}
+    .box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:40px;width:100%;max-width:400px;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+    .brand{text-align:center;margin-bottom:32px;}
+    .brand-icon{width:52px;height:52px;background:linear-gradient(135deg,#238636,#3fb950);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;}
+    .brand h1{font-size:20px;font-weight:700;}
+    .brand p{font-size:13px;color:var(--txt2);margin-top:4px;}
+    .fg{margin-bottom:18px;}
+    .fg label{display:block;font-size:13px;font-weight:500;margin-bottom:7px;}
+    .fg input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:11px 14px;color:var(--txt);font-family:var(--font);font-size:14px;transition:border-color .2s;}
+    .fg input:focus{outline:none;border-color:var(--blue);}
+    .err{background:rgba(248,81,73,0.1);border:1px solid var(--red);color:var(--red);padding:11px 14px;border-radius:var(--r);font-size:13px;margin-bottom:18px;display:none;}
+    .err.show{display:block;}
+    .btn-login{width:100%;background:var(--accent);color:#fff;border:1px solid #2ea043;border-radius:var(--r);padding:12px;font-family:var(--font);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;margin-top:4px;}
+    .btn-login:hover{background:#2ea043;}
+    .btn-login:disabled{background:var(--txt3);border-color:transparent;cursor:not-allowed;}
+    .loading{display:none;text-align:center;color:var(--txt2);font-size:13px;margin-top:12px;}
+    .loading.show{display:block;}
   </style>
 </head>
 <body>
-
-  <div class="login-container">
+  <div class="box">
     <div class="brand">
-      <h2>ເຂົ້າລະບົບ</h2>
-      <p>ລະບົບຈັດການຂໍ້ມູນ ເຂື່ອນໄຟຟ້ាន້ຳຊໍ້</p>
+      <div class="brand-icon">⚡</div>
+      <h1>NAMSOR HYDRO</h1>
+      <p>ລະບົບຈັດການ ເຂື່ອນໄຟຟ້ານ້ຳຊໍ້</p>
     </div>
-
-    <div id="errorMessage" class="error-message"></div>
-
-    <form id="loginForm" onsubmit="handleLogin(event)">
-      <div class="form-group">
-        <label for="emailInput">ອີເມວ</label>
-        <input type="email" id="emailInput" placeholder="name@domain.com" required>
-      </div>
-
-      <div class="form-group">
-        <label for="passwordInput">ລະຫັດຜ່ານ</label>
-        <input type="password" id="passwordInput" placeholder="••••••••" required>
-      </div>
-
-      <button type="submit" id="loginBtn" class="btn-login">ເຂົ້າລະບົບ</button>
-    </form>
+    <div id="err" class="err"></div>
+    <div class="fg">
+      <label>ອີເມວ</label>
+      <input type="email" id="email" placeholder="name@domain.com" autocomplete="email">
+    </div>
+    <div class="fg">
+      <label>ລະຫັດຜ່ານ</label>
+      <input type="password" id="pass" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="btn-login" id="loginBtn" onclick="doLogin()">ເຂົ້າລະບົບ</button>
+    <div class="loading" id="loading">⏳ ກຳລັງກວດສອບ...</div>
   </div>
 
-  <script>
-    const Auth = {
-      login: async (email, password) => {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            if (email === 'namsor911@gmail.com' && password === 'Meexay2026') {
-              resolve({
-                token: 'mock-jwt-token-xyz-123',
-                user: { email: 'namsor911@gmail.com', role: 'admin', name: 'ผู้ดูแลระบบ' }
-              });
-            } else {
-              reject(new Error('ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ'));
-            }
-          }, 1000);
-        });
+  <!-- Firebase Auth SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBuHAV6Uep0hfGvrTH5fDDBANs8b8o7N0U",
+      authDomain: "namsor-hydropower.firebaseapp.com",
+      projectId: "namsor-hydropower",
+      storageBucket: "namsor-hydropower.firebasestorage.app",
+      messagingSenderId: "352110895052",
+      appId: "1:352110895052:web:2661a7a3c526002ff40769"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ====== ALLOWED EMAILS — ອີເມວທີ່ອະນຸຍາດເທົ່ານັ້ນ ======
+    const ALLOWED_EMAILS = [
+      'namsor911@gmail.com'
+    ];
+
+    // ຖ້າ login ຢູ່ແລ້ວ ໄປໜ້າຫຼັກທັນທີ
+    onAuthStateChanged(auth, (user) => {
+      if (user && ALLOWED_EMAILS.includes(user.email.toLowerCase())) {
+        window.location.href = 'index.html';
+      }
+    });
+
+    window.doLogin = async () => {
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const pass  = document.getElementById('pass').value;
+      const errEl = document.getElementById('err');
+      const btn   = document.getElementById('loginBtn');
+      const load  = document.getElementById('loading');
+
+      errEl.classList.remove('show');
+
+      if (!email || !pass) {
+        errEl.textContent = '⚠️ ກະລຸນາປ້ອນອີເມວ ແລະ ລະຫັດຜ່ານ';
+        errEl.classList.add('show'); return;
+      }
+
+      // ກວດ email ກ່ອນ — ບໍ່ຢູ່ໃນລາຍຊື່ block ທັນທີ
+      if (!ALLOWED_EMAILS.includes(email)) {
+        errEl.textContent = '🚫 ອີເມວນີ້ບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ໃຊ້ລະບົບ';
+        errEl.classList.add('show'); return;
+      }
+
+      btn.disabled = true;
+      load.classList.add('show');
+
+      try {
+        await signInWithEmailAndPassword(auth, email, pass);
+        // onAuthStateChanged ຈະ redirect ໄປ index.html ອັດຕະໂນມັດ
+      } catch (e) {
+        load.classList.remove('show');
+        btn.disabled = false;
+        const msg = {
+          'auth/invalid-credential'  : '❌ ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ',
+          'auth/user-not-found'      : '❌ ບໍ່ພົບ account ນີ້',
+          'auth/wrong-password'      : '❌ ລະຫັດຜ່ານບໍ່ຖືກ',
+          'auth/too-many-requests'   : '⚠️ ພະຍາຍາມຫຼາຍເທື່ອ ກະລຸນາລໍຖ້າ',
+          'auth/network-request-failed': '⚠️ ເຊື່ອມຕໍ່ Internet ບໍ່ສຳເລັດ',
+        };
+        errEl.textContent = msg[e.code] || '❌ ເຂົ້າລະບົບບໍ່ສຳເລັດ: ' + e.code;
+        errEl.classList.add('show');
       }
     };
 
-    function setAuthToken(token) {
-      localStorage.setItem('authToken', token);
-    }
-
-    async function handleLogin(event) {
-      event.preventDefault();
-      
-      const email = document.getElementById('emailInput').value.trim();
-      const password = document.getElementById('passwordInput').value;
-      const errorMsg = document.getElementById('errorMessage');
-      const loginBtn = document.getElementById('loginBtn');
-
-      errorMsg.classList.remove('show');
-
-      if (!email || !password) {
-        errorMsg.textContent = '⚠️ ກະລຸນາປ້ອນອີເມວ ແລະ ລະຫັດຜ່ານ';
-        errorMsg.classList.add('show');
-        return;
-      }
-
-      try {
-        loginBtn.disabled = true;
-        loginBtn.textContent = 'ກຳລັງໂຫລດ...';
-
-        const response = await Auth.login(email, password);
-        
-        if (response && response.token) {
-          setAuthToken(response.token);
-          localStorage.setItem('currentUser', JSON.stringify(response.user));
-          
-          setTimeout(() => {
-            window.location.href = 'index.html';
-          }, 500);
-        } else {
-          throw new Error('Invalid response from server');
-        }
-      } catch (err) {
-        console.error('Login error:', err);
-        errorMsg.textContent = '❌ ' + (err.message || 'ເຂົ້າລະບົບບໍ່ສຳເລັດ');
-        errorMsg.classList.add('show');
-        loginBtn.disabled = false;
-        loginBtn.textContent = 'ເຂົ້າລະບົບ';
-      }
-    }
+    // Enter key
+    document.addEventListener('keydown', e => { if (e.key === 'Enter') window.doLogin(); });
   </script>
 </body>
 </html>

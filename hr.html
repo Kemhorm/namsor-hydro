@@ -186,7 +186,7 @@ select.sel:focus{outline:none;border-color:var(--blue)}
 </style>
   <script>if(!localStorage.getItem("authToken")){window.location.replace("login.html");}</script>
 </head>
-<body>
+<body style="visibility:hidden;">
 
 <div id="hr-loading" style="position:fixed;inset:0;background:#0d1117;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
   <div style="width:48px;height:48px;background:linear-gradient(135deg,#238636,#3fb950);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">⚡</div>
@@ -206,6 +206,7 @@ select.sel:focus{outline:none;border-color:var(--blue)}
   <span class="top-title">💼 ລະບົບ HR — ຕາຕະລາງເງິນເດືອນ</span>
   <div class="spacer"></div>
   <span class="top-date" id="topDate"></span>
+  <button onclick="doLogout()" style="margin-left:8px;background:rgba(248,81,73,0.1);border:1px solid rgba(248,81,73,0.25);color:#f85149;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer;font-family:var(--font);">&#128275; ອອກຈາກລະບບ</button>
 </div>
 
 <div class="content">
@@ -388,6 +389,7 @@ select.sel:focus{outline:none;border-color:var(--blue)}
 // ─── FIREBASE INIT ───
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBuHAV6Uep0hfGvrTH5fDDBANs8b8o7N0U",
@@ -399,6 +401,20 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db_fs = getFirestore(app);
+const auth = getAuth(app);
+
+// AUTH GUARD
+const ALLOWED_EMAILS = ['namsor911@gmail.com'];
+onAuthStateChanged(auth, (user) => {
+  if (!user || !ALLOWED_EMAILS.includes(user.email.toLowerCase())) {
+    window.location.href = 'login.html';
+  } else {
+    document.body.style.visibility = 'visible';
+  }
+});
+window.doLogout = async () => {
+  if (confirm('logout?')) { await signOut(auth); window.location.href = 'login.html'; }
+};
 
 async function fsGet(id){ const s=await getDoc(doc(db_fs,'namsor',id)); return s.exists()?s.data().value:null; }
 async function fsSet(id,val){ await setDoc(doc(db_fs,'namsor',id),{value:val}); }
